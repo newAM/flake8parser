@@ -1,6 +1,6 @@
 import pytest
-from parse import parse_line
-from parse import Violation
+from flake8parser import parse_line
+from flake8parser import Violation
 
 
 @pytest.mark.parametrize(

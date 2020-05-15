@@ -1,5 +1,6 @@
 Flake8 Parser
 #############
+|PyPi Version| |Build Status| |Black|
 
 Per the `flake8 docs`_.
 
@@ -14,5 +15,10 @@ Unit Tests
     pip install pytest>=5.4.2
     pytest
 
-
+.. |PyPi Version| image:: https://badge.fury.io/py/flake8parser.svg
+   :target: https://badge.fury.io/py/flake8parser
+.. |Build Status| image:: https://travis-ci.org/newAM/flake8parser.svg?branch=master
+   :target: https://travis-ci.org/newAM/flake8parser
+.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+	:target: https://github.com/psf/black
 .. _flake8 docs: https://flake8.pycqa.org/en/latest/user/python-api.html#public-python-api

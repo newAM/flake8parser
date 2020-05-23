@@ -1,9 +1,5 @@
 from typing import NamedTuple
-from typing import Iterable
-from typing import Optional
-import asyncio
 import re
-import sys
 
 
 class Violation(NamedTuple):
@@ -44,6 +40,29 @@ def parse_line(line: str) -> Violation:
 
     Raies:
         ParserError: Unable to parse line.
+
+    Examples:
+
+        Asynchronously generate violations::
+
+            async def flake8(
+                *args: str, cwd: Optional[str] = None
+            ) -> Iterable[Violation]:
+                proc = await asyncio.create_subprocess_exec(
+                    sys.executable, "-m", "flake8", *args,
+                    cwd=cwd,
+                    stdout=asyncio.subprocess.PIPE,
+                )
+
+                while True:
+                    line = await proc.stdout.readline()
+                    if line:
+                        line = line.decode("utf-8")
+                        yield parse_line(line)
+                    else:
+                        break
+
+                assert proc.returncode == 0
     """
     m = _parse_re.match(line)
     if m:
@@ -57,42 +76,3 @@ def parse_line(line: str) -> Violation:
         )
     else:
         raise ParserError(f"unable to parse {line} with {_parse_re.pattern}")
-
-
-async def flake8(*args: str, cwd: Optional[str] = None) -> Iterable[Violation]:
-    """
-    Runs flake8, asynchronously generating results.
-
-    Args:
-        args: Extra command line arguments to supply to flake8.
-        cwd: Working directory.
-
-    Returns:
-        Asynchronously generates violations.
-
-    Examples:
-
-        Basic usage::
-
-            import asyncio
-            from parse import flake8
-
-
-            async def main():
-                async for violation in flake8(cwd="/home/alex/git/voluptuous"):
-                    print(violation)
-
-
-            asyncio.run(main())
-    """
-    proc = await asyncio.create_subprocess_exec(
-        sys.executable, "-m", "flake8", *args, cwd=cwd, stdout=asyncio.subprocess.PIPE,
-    )
-
-    while True:
-        line = await proc.stdout.readline()
-        if line:
-            line = line.decode("utf-8")
-            yield parse_line(line)
-        else:
-            break

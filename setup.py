@@ -12,7 +12,7 @@ setup(
         "A public python API for flake8 created by parsing the command line output."
     ),
     long_description=long_description,
-    version="0.1.0",
+    version="0.1.1",
     author="Alex M.",
     author_email="7845120+newAM@users.noreply.github.com",
     url="https://github.com/newAM/flake8parser",

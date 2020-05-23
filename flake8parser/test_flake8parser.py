@@ -1,6 +1,7 @@
-import pytest
 from flake8parser import parse_line
+from flake8parser import ParserError
 from flake8parser import Violation
+import pytest
 
 
 @pytest.mark.parametrize(
@@ -45,3 +46,9 @@ from flake8parser import Violation
 def test_parse_line(line: str, violation: Violation):
     assert parse_line(line) == violation
     assert str(violation) == line
+
+
+@pytest.mark.parametrize("line", ["", "asdf"])
+def test_parse_line_error(line: str):
+    with pytest.raises(ParserError):
+        parse_line(line)

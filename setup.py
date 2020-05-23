@@ -17,8 +17,12 @@ setup(
     author_email="7845120+newAM@users.noreply.github.com",
     url="https://github.com/newAM/flake8parser",
     license="MIT",
-    python_requires=">=3.8",
-    install_requires=["flake8>=3.8.1"],
-    classifiers=["Programming Language :: Python :: 3.8"],
+    python_requires=">=3.6",
+    install_requires=["flake8>=3.8.2"],
+    classifiers=[
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+    ],
     packages=["flake8parser"],
 )

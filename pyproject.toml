@@ -4,8 +4,8 @@ line-length = 79
 [tool.poetry]
 name = "flake8parser"
 description = "A public python API for flake8 created by parsing the command line output."
-version = "0.1.0"
-authors = ["Alex M."]
+version = "0.1.1"
+authors = ["Alex Martens <alex@thinglab.org>"]
 license = "MIT"
 readme = "README.rst"
 repository = "https://github.com/newAM/flake8parser"

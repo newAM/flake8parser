@@ -3,7 +3,7 @@ import re
 
 
 class Violation(NamedTuple):
-    """ Violation output with attributes. """
+    """Violation output with attributes."""
 
     path: str
     line: int
@@ -20,7 +20,7 @@ class Violation(NamedTuple):
 
 
 class ParserError(ValueError):
-    """ Raised upon all parsing errors. """
+    """Raised upon all parsing errors."""
 
     pass
 
